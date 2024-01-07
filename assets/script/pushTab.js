@@ -1,5 +1,3 @@
-
-
 export function pushPageTable(arrData, containerElDom, page) {
 	page--; //increnemt for count array for '0'
 	containerElDom.innerHTML = '';

@@ -384,7 +384,7 @@ button {
 }
 
 
-.main-costumers-paganation-list {
+.main-costumers-pagination-list {
 	display: flex;
 	gap: 10px;
 	align-items: center;

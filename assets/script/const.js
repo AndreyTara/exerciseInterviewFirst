@@ -80,20 +80,14 @@ export const elNumbers = 100;
 
 
 const mainCostumersEntries = document.querySelector(".main-costumers-entries");
-const firstDomEntries = mainCostumersEntries.querySelector(".first");
-const lastDomEntries = mainCostumersEntries.querySelector(".last");
-const totalDomEntries = mainCostumersEntries.querySelector(".total");
-export const entriesValue = [
-	firstDomEntries,
-	lastDomEntries,
-	totalDomEntries,
-]
+export const firstDomEntries = mainCostumersEntries.querySelector(".first");
+export const lastDomEntries = mainCostumersEntries.querySelector(".last");
+export const totalDomEntries = mainCostumersEntries.querySelector(".total");
 
-const paginationListDOM = document.querySelector('.main-costumers-paganation-list');
-const firstLink = 1;
-const stepLink = 3;
-export const pushPaginationValue = [
-	firstLink,
-	stepLink,
-	paginationListDOM
-]
+
+
+export const listDomPagination = document.querySelector('.main-costumers-pagination-list');
+export const firstLinkPagination = 1;
+export const stepLinkPagination = 3;
+
+export const containerDomPagination = document.querySelector(".main-costumers-pagination-container");
