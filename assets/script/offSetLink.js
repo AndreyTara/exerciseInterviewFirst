@@ -2,7 +2,7 @@ import { pushPageTable } from './pushTab.js'
 import { pushPageEntreis } from './pushEntries.js'
 import { pushPagination } from './pushPagition.js'
 
-function offSetLink(
+export function offSetLink(
 	customers,
 	containerDomPagination,
 	firstLinkPagination,
