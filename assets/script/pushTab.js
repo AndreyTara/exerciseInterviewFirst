@@ -12,7 +12,7 @@ export function pushPageTable(arrData, containerElDom, page) {
 			 <td class="main-costumers-td">${element.company}</td>
 			 <td class="main-costumers-td">${element.phoneNumber}</td>
 			 <td class="main-costumers-td">${element.email}</td>
-			 <td class="main-costumers-td">${element.id} ${element.country}</td>
+			 <td class="main-costumers-td">${element.country}</td>
 			 <td class="main-costumers-td"> 
 					 <button class="main-costumers-btn ${stateStatusT}" > ${element.statusT}</button>
 			 </td> 

@@ -330,9 +330,13 @@ button {
 
 .main-costumers-td:last-child {
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .main-costumers-btn.is-active {
+
 	text-align: center;
 	padding: 4px 12px 4px 12px;
 	text-align: center;
