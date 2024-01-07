@@ -76,7 +76,7 @@ export const startArray = [
 		statusT: 'Inactive'
 	}
 ]
-export const elNumbers = 320;
+export const elNumbers = 100;
 
 
 const mainCostumersEntries = document.querySelector(".main-costumers-entries");
@@ -92,7 +92,7 @@ export const entriesValue = [
 const paginationListDOM = document.querySelector('.main-costumers-paganation-list');
 const firstLink = 1;
 const stepLink = 3;
-export const pushPaganationListValue = [
+export const pushPaginationValue = [
 	firstLink,
 	stepLink,
 	paginationListDOM
