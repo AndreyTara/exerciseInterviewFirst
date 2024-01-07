@@ -16,6 +16,9 @@ ol {
 a {
 	text-decoration: none;
 	color: inherit;
+	margin: 0;
+	padding: 0;
+	border: none;
 }
 
 p,
@@ -35,23 +38,14 @@ caption {
 }
 
 body {
-	margin: 0 auto;
+	margin: 0;
 }
 
-.visually-hidden {
-	display: none;
-	/* position: absolute;
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	border: 0;
-	padding: 0;
-
-	white-space: nowrap;
-	clip-path: inset(100%);
-	clip: rect(0 0 0 0);
-	overflow: hidden; */
+button {
+	border: none;
+	display: block;
 }
+
 
 .wrapper {
 	display: flex;
@@ -60,19 +54,24 @@ body {
 	line-height: 1.2;
 	font-size: 500;
 	background-color: #FFFFFF;
-	margin: auto;
+	max-width: 1440px;
+	width: 100%;
+	margin: 0 auto;
 }
 
 .header {
-	padding: 0;
-	width: 306px;
-	height: 1198px;
+	margin: 27px 18px;
+	padding: 10px;
+	max-width: 306px;
+	width: 100%;
 	box-shadow: 0px 10px 60px 0px #E2ECF980;
 }
 
 .header-container {
-	margin: 37px 28px 37px 28px;
-	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .header-nav {
@@ -118,7 +117,8 @@ body {
 }
 
 .header-item {
-	width: 250px;
+	max-width: 250px;
+	width: 100%;
 	height: 46px;
 }
 
@@ -199,7 +199,7 @@ body {
 	color: #000;
 }
 
-.header-user-employment {
+.header-user-employee {
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 1.5;
@@ -377,43 +377,54 @@ body {
 	margin: 0 auto 0 0;
 }
 
-.main-costumers-button-nav-slide {
+.main-costumers-pagination-container {
 	display: flex;
-	align-items: center;
+	gap: 10px;
 	margin: 0 0 0 auto;
-	gap: 10px;
 }
 
-.main-costumers-button-count-slide {
+
+.main-costumers-paganation-list {
 	display: flex;
 	gap: 10px;
-}
-
-.count-button {
-	display: flex;
 	align-items: center;
-	justify-content: center;
 	font-size: 12px;
 	font-weight: 500;
 	line-height: 1;
 	letter-spacing: -0.01em;
 	text-align: left;
+}
+
+.main-costumers-item {}
+
+.main-costumers-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: #404B52;
 	border: 1px solid #EEEEEE;
 	background-color: #F5F5F5;
 	width: 25px;
 	height: 24px;
 	padding: 6px 10px 6px 10px;
-	border-radius: 4px
+	border-radius: 4px;
+	user-select: none;
+	cursor: pointer;
 }
 
-.count-button:hover {
+.main-costumers-link:hover {
 	background-color: #5932EA;
 	border-color: #5932EA;
 	color: #ffff;
 }
 
-.count-button.is-active {
+.main-costumers-link:focus {
+	background-color: #5932EA;
+	border-color: #5932EA;
+	color: #ffff;
+}
+
+.main-costumers-link.is-active {
 	background-color: #5932EA;
 	border-color: #5932EA;
 	color: #ffff;

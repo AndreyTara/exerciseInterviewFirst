@@ -1,261 +1,157 @@
-const startArray = [
-	{
-		id: 1,
-		costomerName: "Jane Cooper",
-		company: "Microsoft",
-		phoneNumber: '(225) 555-0118',
-		email: "jane@microsoft.com",
-		country: 'United States',
-		statusT: 'Active'
-	},
-	{
-		id: 2,
-		costomerName: "Floud Mails",
-		company: "Yahoo",
-		phoneNumber: '(205) 555-0110',
-		email: "floyd@yahoo.com",
-		country: 'Kiribati',
-		statusT: 'Inactive'
-	},
-	{
-		id: 3,
-		costomerName: "Ronald Richards",
-		company: "Adobe",
-		phoneNumber: '(302) 555-0107',
-		email: "ronald@adobe.com",
-		country: 'Israel',
-		statusT: 'Inactive'
-	},
-	{
-		id: 4,
-		costomerName: "Marvin McKinney",
-		company: "Tesla",
-		phoneNumber: '(252) 555-0126',
-		email: "marvin@tesla.com",
-		country: 'Iran',
-		statusT: 'Active'
-	},
-	{
-		id: 5,
-		costomerName: "Jerome Bell",
-		company: "Google",
-		phoneNumber: '(629) 555-0129',
-		email: "jerome@google.com",
-		country: 'Réunion',
-		statusT: 'Active'
-	},
-	{
-		id: 6,
-		costomerName: "Kathryn Murphy",
-		company: "Microsoft",
-		phoneNumber: '(406) 555-0120',
-		email: "kathryn@microsoft.com",
-		country: 'Curaçao',
-		statusT: 'Active'
-	},
-	{
-		id: 7,
-		costomerName: "Jacob Jones",
-		company: "Yahoo",
-		phoneNumber: '(208) 555-0112',
-		email: "jacob@yahoo.com",
-		country: 'Brazil',
-		statusT: 'Active'
-	},
-	{
-		id: 8,
-		costomerName: "Kristin Watson",
-		company: "Facebook",
-		phoneNumber: '(704) 555-0127',
-		email: "kristin@facebook.com",
-		country: 'Åland Islands',
-		statusT: 'Inactive'
+// import { headerList} from './const.js'
+// import { fillMenu } from './fillMenu.js'
+// fillMenu(headerList);
+
+import {
+	startArray,
+	elNumbers,
+	mainCostumersTbody,
+	entriesValue,
+	pushPaganationListValue
+} from './const.js'
+import { getData } from './getData.js'
+import { pushPageTable } from './pushTab.js'
+import { pushPageEntreis } from './pushEntries.js'
+
+
+function main() {
+	let currentPage = 1; //start for '1'
+	const customers = getData(startArray, elNumbers);
+
+	pushPageTable(customers, mainCostumersTbody, currentPage);
+	pushPageEntreis(customers, entriesValue, currentPage);
+
+
+	function pushScrollPaganationList(arrData, pushPaganationListValue, currentPage) {
+		const [
+			firstLink,
+			stepLink,
+			paginationListDOM
+		] = pushPaganationListValue
+		const totalCountButton = Math.ceil(arrData.length / 8);
+		paginationListDOM.innerHTML = '';
+		let [fragmentTbodyTr, styleIsActive] = '';
+		const lastLink = Math.ceil(arrData.length / 8);
+		let indexLink = [1, 2, 3, 4, 5, 6];
+		let indexPoint = [0, 0, 0, 0, 0, 0];
+		if (lastLink < 7) {
+			indexLink = [1, 2, 3, 4, 5, 6];
+			indexPoint = [0, 0, 0, 0, 0, 0];
+		} else if (currentPage <= stepLink) {
+			indexLink = [firstLink, firstLink + 1, firstLink + 2, firstLink + 3, firstLink + 4, lastLink];
+			indexPoint = [0, 0, 0, 0, firstLink + 4, 0];
+		} else if (currentPage >= lastLink - stepLink) {
+			indexLink = [firstLink, lastLink - 4, lastLink - 3, lastLink - 2, lastLink - 1, lastLink]
+			indexPoint = [0, lastLink - 4, 0, 0, 0, 0];
+		} else if ((currentPage < lastLink - stepLink) & (currentPage > stepLink)) {
+			indexLink = [firstLink, currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, lastLink]
+			indexPoint = [0, currentPage - 2, 0, 0, 0, currentPage + 2, 0];
+		}
+
+		for (let i = 1; i < totalCountButton + 1; i++) {
+			let currentIndexId = indexLink[i - 1];
+			if (typeof (indexLink[i - 1]) === 'number') {
+				let currentValue = currentIndexId;
+				let currentStyle = 'main-costumers-link'
+
+				if (indexLink[i - 1] === indexPoint[i - 1]) {
+					currentValue = '...'; //...&#8230;
+					currentStyle = '';
+				} else {
+					currentValue = currentIndexId;
+					currentStyle = 'main-costumers-link';
+				}
+
+				if (currentPage === currentIndexId) {
+					styleIsActive = 'is-active';
+				}
+
+				fragmentTbodyTr = `<li class=".main-costumers-item" > 
+				<a class="${currentStyle} ${styleIsActive}" id='link-${currentIndexId}' href=""> 
+				${currentValue} 	</a> </li>`
+				paginationListDOM.innerHTML += fragmentTbodyTr;
+				styleIsActive = '';
+			}
+		}
 	}
-]
-
-const quantityNumber = 50;
-function getMoucheData(customers, quantityNumber) {
-	const currentArray = [];
-	const costomerName = [];
-	const company = [];
-	const phoneNumber = [];
-	const email = [];
-	const country = [];
-	const statusT = [];
-
-	customers.forEach((elem) => {
-		costomerName.push(elem.costomerName);
-		company.push(elem.company);
-		phoneNumber.push(elem.phoneNumber);
-		email.push(elem.email);
-		country.push(elem.country);
-		statusT.push(elem.statusT);
-	})
-
-	for (i = 0; i < quantityNumber; i++) {
-		let randomIndex = Math.floor(Math.random() * customers.length);
-		const randomObj = {
-			id: i,
-			costomerName: costomerName[randomIndex],
-			company: company[randomIndex],
-			phoneNumber: phoneNumber[randomIndex],
-			email: email[randomIndex],
-			country: country[randomIndex],
-			statusT: statusT[randomIndex]
-		};
-		currentArray.push(randomObj);
-	}
-	return currentArray;
-}
-
-const customers = getMoucheData(startArray, quantityNumber);
 
 
-function addFillLinkMenu(classNameList) {
-	classNameList.addEventListener("click", (e) => {
-		const prevСlassNameActiveLink = classNameList.querySelector('.is-active');
-		if (e.target.id === e.currentTarget.id) {
-			return;
-		}
-		if (prevСlassNameActiveLink) {
-			prevСlassNameActiveLink.classList.remove("is-active");
-		}
-		const linkId = e.target.dataset.id;
-		const nextActiveLink = classNameList.querySelector(`#${linkId}`);
-		nextActiveLink.classList.add("is-active");
-	});
-}
 
-const headerList = document.querySelector(".header-list");
-addFillLinkMenu(headerList);
+	pushScrollPaganationList(customers, pushPaganationListValue, currentPage);
 
 
-// const ++++++++++++++++++++++
+	const paginationContainerDOM = document.querySelector(".main-costumers-pagination-container");
 
-
-let currentSlideTable = 1; //start for '1'
-
-const mainCostumersTbody = document.querySelector(".main-costumers-tbody");
-
-function pushListTable(arrayCuctomers, mainCostumersTbody, currentSlideTable) {
-	mainCostumersTbody.innerHTML = '';
-	const firstIndex = currentSlideTable * 8 - 8;
-	const lastIndex = currentSlideTable * 8;
-	arrayCuctomers.map((customer, index) => {
-		if ((index >= firstIndex) & (index < lastIndex)) {
-			let stateStatusT = customer.statusT === "Active" ? "is-active" : "is-inactive";
-			const fragmentTbodyTr =
-				`<tr class="main-costumers-tbody-tr">
-			 <td class="main-costumers-td">${customer.costomerName}</td>
-			 <td class="main-costumers-td">${customer.company}</td>
-			 <td class="main-costumers-td">${customer.phoneNumber}</td>
-			 <td class="main-costumers-td">${customer.email}</td>
-			 <td class="main-costumers-td">${customer.id} ${customer.country}</td>
-			 <td class="main-costumers-td"> 
-					 <button class="main-costumers-btn ${stateStatusT}" > ${customer.statusT}</button>
-			 </td> 
-		 </tr>`
-			mainCostumersTbody.innerHTML += fragmentTbodyTr;
-		}
-	})
-}
-pushListTable(customers, mainCostumersTbody, currentSlideTable);
-
-
-const mainCostumersEntries = document.querySelector(".main-costumers-entries");
-// area change Entreis Table
-function pushCountEntreisTable(customers, mainCostumersEntries, currentSlideTable) {
-	const firstNumberEntries = mainCostumersEntries.querySelector(".first");
-	const lastNumberEntries = mainCostumersEntries.querySelector(".last");
-	const totalNumberEntries = mainCostumersEntries.querySelector(".total");
-	const totalCountElement = customers.length;
-	totalNumberEntries.textContent = totalCountElement;
-	const firstCountElement = currentSlideTable * 8 - 7;
-	firstNumberEntries.textContent = firstCountElement;
-	const lastCountElement = currentSlideTable * 8;
-	if (totalCountElement >= lastCountElement) {
-		lastNumberEntries.textContent = lastCountElement;
-	} else {
-		lastNumberEntries.textContent = totalCountElement;
-	}
-}
-pushCountEntreisTable(customers, mainCostumersEntries, currentSlideTable);
-
-
-function pushScrollButtonSlide(customers, mainCostumersButtonCountSlide, currentSlideTable) {
-	const totalCountButton = Math.ceil(customers.length / 8);
-	mainCostumersButtonCountSlide.innerHTML = '';
-	let styleIsActive = '';
-	for (let i = 1; i < totalCountButton + 1; i++) {
-		if (currentSlideTable === i) {
-			styleIsActive = 'is-active';
-		}
-		let fragmentTbodyTr = `<button class="count-button ${styleIsActive}" type="button"  id='id-${i}'>${i}</button>`
-		styleIsActive = '';
-		mainCostumersButtonCountSlide.innerHTML += fragmentTbodyTr;
-	}
-}
-
-
-const mainCostumersButtonCountSlide = document.querySelector('.main-costumers-button-count-slide');
-pushScrollButtonSlide(customers, mainCostumersButtonCountSlide, currentSlideTable)
-
-
-const mainCostumersButtonNavSlide = document.querySelector(".main-costumers-button-nav-slide");
-
-function offsetButton(customers, mainCostumersButtonNavSlide, mainCostumersButtonCountSlide, mainCostumersEntries, mainCostumersTbody) {
-	mainCostumersButtonNavSlide.addEventListener('click', (e) => {
-		let nextSlideIndexId = 0;
-		const pushSlideIndexId = +e.target.id.split('-')[1];
-		let itemPrev = mainCostumersButtonCountSlide.querySelector('.is-active');
-		let prevSlideIndexId = +itemPrev.id.split('-')[1];
-		let itemNext = {};
-		let maxSlideIndexId = Math.ceil(customers.length / 8);
-		if (e.target.id === itemPrev.id) {
-			return;
-		}
-		if (e.target.id === 'arrowButtonContainer') {
-			// захист від помилок тик до контейнеру
-			return;
-		} else if (e.target.id === 'scrollButtonContainer') {
-			// захист від помилок тик до контейнеру
-			return;
-		} else if (e.target.id === 'scrollButtonPoints') {
-			// захист від помилок тик до контейнеру
-			return;
-		} else if (e.target.id === 'nextBtnSlide') {
-			// жмаканя на 'next'
-			nextSlideIndexId = prevSlideIndexId + 1;
-			if (nextSlideIndexId > maxSlideIndexId) {
-				nextSlideIndexId = maxSlideIndexId;
+	function offsetButton(
+		customers,
+		paginationContainerDOM,
+		entriesValue,
+		mainCostumersTbody,
+		paginationListDOM,
+		pushPaganationListValue
+	) {
+		paginationContainerDOM.addEventListener('click', (e) => {
+			let nextSlideIndexId;
+			const pushSlideIndexId = +e.target.id.split('-')[1];
+			let itemPrev = paginationListDOM.querySelector('.is-active');
+			let prevSlideIndexId = +itemPrev.id.split('-')[1];
+			let itemNext = {};
+			let maxSlideIndexId = Math.ceil(customers.length / 8);
+			if (e.target.id === itemPrev.id) {
 				return;
 			}
-			itemNext = mainCostumersButtonCountSlide.querySelector('#id-' + `${nextSlideIndexId}`);
-			itemNext.classList.add("is-active");
-			itemPrev.classList.remove("is-active");
-
-		} else if (e.target.id === 'prevBtnSlide') {
-			// жмаканя на 'prev'
-			nextSlideIndexId = prevSlideIndexId - 1;
-			if (nextSlideIndexId < 1) {
-				nextSlideIndexId = 1;
+			if (e.target.id === 'arrowButtonContainer') {
+				// захист від помилок тик до контейнеру
 				return;
+			} else if (e.target.id === 'scrollButtonContainer') {
+				// захист від помилок тик до контейнеру
+				return;
+			} else if (e.target.id === 'link') {
+				// захист від помилок тик до контейнеру
+				return;
+			} else if (e.target.id === 'nextBtnSlide') {
+				// жмаканя на 'next'
+				nextSlideIndexId = prevSlideIndexId + 1;
+				if (nextSlideIndexId > maxSlideIndexId) {
+					nextSlideIndexId = maxSlideIndexId;
+					return;
+				}
+				itemNext = paginationListDOM.querySelector('#link-' + `${nextSlideIndexId}`);
+				itemNext.classList.add("is-active");
+				itemPrev.classList.remove("is-active");
+
+			} else if (e.target.id === 'prevBtnSlide') {
+				// жмаканя на 'prev'
+				nextSlideIndexId = prevSlideIndexId - 1;
+				if (nextSlideIndexId < 1) {
+					nextSlideIndexId = 1;
+					return;
+				}
+				itemNext = paginationListDOM.querySelector('#link-' + `${nextSlideIndexId}`);
+				itemNext.classList.add("is-active");
+				itemPrev.classList.remove("is-active");
+			} else if (typeof (pushSlideIndexId) === 'number') {
+				// жмаканя на 'number'
+				nextSlideIndexId = pushSlideIndexId;
+				itemNext = paginationListDOM.querySelector('#link-' + `${nextSlideIndexId}`);
+				itemNext.classList.add("is-active");
+				itemPrev.classList.remove("is-active");
 			}
-			itemNext = mainCostumersButtonCountSlide.querySelector('#id-' + `${nextSlideIndexId}`);
-			itemNext.classList.add("is-active");
-			itemPrev.classList.remove("is-active");
-		} else if (typeof (pushSlideIndexId) === 'number') {
-			// жмаканя на 'number'
-			nextSlideIndexId = pushSlideIndexId;
-			itemNext = mainCostumersButtonCountSlide.querySelector('#id-' + `${nextSlideIndexId}`);
-			itemNext.classList.add("is-active");
-			itemPrev.classList.remove("is-active");
-		}
 
-		pushCountEntreisTable(customers, mainCostumersEntries, nextSlideIndexId);
-		pushListTable(customers, mainCostumersTbody, nextSlideIndexId);
+			pushPageEntreis(customers, entriesValue, nextSlideIndexId);
+			pushPageTable(customers, mainCostumersTbody, nextSlideIndexId);
+			pushScrollPaganationList(customers, pushPaganationListValue, nextSlideIndexId)
+		})
+	}
 
-	})
+	offsetButton(
+		customers,
+		paginationContainerDOM,
+		entriesValue,
+		mainCostumersTbody,
+		paginationListDOM,
+		pushPaganationListValue
+	);
 }
 
-offsetButton(customers, mainCostumersButtonNavSlide, mainCostumersButtonCountSlide, mainCostumersEntries, mainCostumersTbody);
+main()

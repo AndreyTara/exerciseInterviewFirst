@@ -192,7 +192,7 @@
 					<img class="header-user-img" src="./assets/img/Evano.jpg" alt="Evano" width="42" height="42">
 					<div class="header-user-info">
 						<h3 class="header-user-name">Evano</h3>
-						<p class="header-user-employment">Project Manager</p>
+						<p class="header-user-employee">Project Manager</p>
 					</div>
 				</div>
 			</div>
@@ -244,14 +244,20 @@
 									<p> Showing data <span class="first">1</span> to <span class="last">8</span> of <span
 											class="total">256K</span> entries</p>
 								</div>
-								<div class="main-costumers-button-nav-slide" id='arrowButtonContainer'>
-									<button class="count-button" id="prevBtnSlide" type="button">&lt;</button>
-									<ul class="main-costumers-button-count-slide" id="scrollButtonContainer">
-										<li class="count-button is-active" id="btn-1">1</li>
-										<li class="count-button" id="btn-2">2</li>
-										<li class="count-button" id="btn-3">3</li>
+								<div class="main-costumers-pagination-container" id='arrowButtonContainer'>
+									<button class="main-costumers-link" id="prevBtnSlide">&lt;</button>
+									<ul class="main-costumers-paganation-list" id="scrollButtonContainer">
+										<li class="main-costumers-item is-active">
+											<a class="main-costumers-link" id='link-1'> 1 </a>
+										</li>
+										<li class="main-costumers-item">
+											<a class="main-costumers-link" id='link-2'>2 </a>
+										</li>
+										<li class="main-costumers-item">
+											<a class="main-costumers-link" id='link-3'> 3 </a>
+										</li>
 									</ul>
-									<button class="count-button" id="nextBtnSlide" type="button">&gt;</button>
+									<button class="main-costumers-link" id="nextBtnSlide">&gt;</button>
 								</div>
 							</div>
 						</div>
@@ -263,7 +269,9 @@
 	<footer class="footer">
 
 	</footer>
-	<script src="./assets/script/main.js"></script>
+	<script src="./assets/script/main.js" type="module"></script>
+	<script src="./assets/script/const.js" type="module"></script>
+	<script src="./assets/script/pushTab.js" type="module"></script>
 </body>
 
 </html>
