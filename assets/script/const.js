@@ -76,7 +76,7 @@ export const startArray = [
 		statusT: 'Inactive'
 	}
 ]
-export const elNumbers = 100;
+export const elNumbers = 320;
 
 
 const mainCostumersEntries = document.querySelector(".main-costumers-entries");
