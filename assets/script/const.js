@@ -76,15 +76,12 @@ export const startArray = [
 		statusT: 'Inactive'
 	}
 ]
-export const elNumbers = 319;
-
+export const elNumbers = 320;
 
 const mainCostumersEntries = document.querySelector(".main-costumers-entries");
 export const firstDomEntries = mainCostumersEntries.querySelector(".first");
 export const lastDomEntries = mainCostumersEntries.querySelector(".last");
 export const totalDomEntries = mainCostumersEntries.querySelector(".total");
-
-
 
 export const listDomPagination = document.querySelector('.main-costumers-pagination-list');
 export const firstLinkPagination = 1;

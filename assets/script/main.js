@@ -29,6 +29,7 @@ pushPageEntreis(customers, firstDomEntries, lastDomEntries, totalDomEntries, cur
 
 pushPagination(customers, firstLinkPagination, stepLinkPagination, listDomPagination, currentPage);
 
+
 offSetLink(customers, containerDomPagination, firstLinkPagination, stepLinkPagination, listDomPagination,
 	firstDomEntries, lastDomEntries, totalDomEntries, mainCostumersTbody
 );

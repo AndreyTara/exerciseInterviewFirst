@@ -1,54 +1,49 @@
-import { pushPageTable } from './pushTab.js'
 import { pushPageEntreis } from './pushEntries.js'
 import { pushPagination } from './pushPagition.js'
+import { pushPageTable } from './pushTab.js'
 
-export function offSetLink(
-	customers,
+export function offSetLink(customers, 
 	containerDomPagination,
-	firstLinkPagination,
-	stepLinkPagination,
-	listDomPagination,
-	firstDomEntries,
-	lastDomEntries,
-	totalDomEntries,
-	mainCostumersTbody) {
+	 firstLinkPagination, 
+	 stepLinkPagination, 
+	 listDomPagination, 
+	 firstDomEntries,
+	 lastDomEntries, 
+	 totalDomEntries,
+	 mainCostumersTbody) {
 
-	const totalLinkIndexId = Math.ceil(customers.length / 8);
+	const maxLinkIndexId = Math.ceil(customers.length / 8);
 	containerDomPagination.addEventListener('click', (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		let nextLinkIndexId;
-		let pushElIdName = e.target.id;
-		let mainContainerIdName = 'arrowButtonContainer';
-		let slaveContainerIdName = 'scrollButtonContainer';
-
-		const offsetStep = 1;
-		const pushLinkIndexId = +pushElIdName.split('-')[1];
+		let pushElId = e.target.id;
+		const pushLinkIndexId = +pushElId.split('-')[1];
 		const itemPrevDom = listDomPagination.querySelector('.is-active');
 		const prevLinkIndexId = +itemPrevDom.id.split('-')[1];
 		let itemNextDom = {};
-		if (pushElIdName === itemPrevDom.id) {
+		if (pushElId === itemPrevDom.id) {
 			return;
 		}
-		if (pushElIdName === mainContainerIdName) {
+		if (pushElId === 'arrowButtonContainer') {
 			// захист від помилок тик до контейнеру
 			return;
-		} else if (pushElIdName === slaveContainerIdName) {
+		} else if (pushElId === 'scrollButtonContainer') {
 			// захист від помилок тик до контейнеру
 			return;
-		} else if (pushElIdName === 'nextBtnSlide') {
+		} else if (pushElId === 'nextBtnSlide') {
 			// жмаканя на 'next'
-			nextLinkIndexId = prevLinkIndexId + offsetStep;
-			if (nextLinkIndexId > totalLinkIndexId) {
-				nextLinkIndexId = totalLinkIndexId;
+			nextLinkIndexId = prevLinkIndexId + 1;
+			if (nextLinkIndexId > maxLinkIndexId) {
+				nextLinkIndexId = maxLinkIndexId;
 				return;
 			}
 			itemNextDom = listDomPagination.querySelector('#link-' + `${nextLinkIndexId}`);
 			itemNextDom.classList.add("is-active");
 			itemPrevDom.classList.remove("is-active");
 
-		} else if (pushElIdName === 'prevBtnSlide') {
+		} else if (pushElId === 'prevBtnSlide') {
 			// жмаканя на 'prev'
-			nextLinkIndexId = prevLinkIndexId - offsetStep;
+			nextLinkIndexId = prevLinkIndexId - 1;
 			if (nextLinkIndexId < 1) {
 				nextLinkIndexId = 1;
 				return;
@@ -70,4 +65,4 @@ export function offSetLink(
 
 		pushPagination(customers, firstLinkPagination, stepLinkPagination, listDomPagination, nextLinkIndexId)
 	})
-}
+} 
