@@ -57,6 +57,7 @@ button {
 	max-width: 1440px;
 	width: 100%;
 	margin: 0 auto;
+	min-width: 650px;
 }
 
 @media(max-width:1024px) {
@@ -415,6 +416,7 @@ button {
 
 .main-costumers-count-of {
 	display: flex;
+	flex-wrap: wrap;
 	padding: 32px 40px 41px 38px;
 }
 
