@@ -1,2 +1,1 @@
-https://steady-fenglisu-9fc391.netlify.app/
-https://andreytara.github.io/exerciseInterviewFirst/
+https://www.figma.com/file/wQDPShXKxT3yEllTpHZFAg/CRM-Dashboard-Customers-(Copy)?node-id=3%3A3&mode=dev
