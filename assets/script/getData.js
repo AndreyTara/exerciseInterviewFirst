@@ -106,7 +106,7 @@ function getRandomObj(randomData) {
   return randomObj;
 }
 
-export function getRandomMockUserData(quantityOfElements = 320) {
+export function getRandomMockUserData(quantityOfElements = 256000) {
   // я свідмо роблю перестановки стартового массиву з макету, щоб побачити як себе поводить таблиця з данними різної щирирни
   const randomData = getRandomSourceData();
 
